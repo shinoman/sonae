@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+    <center><%= paginate @follower, :remote => true %></center>
+    <% @follower.each do |f| %>
+        <li id="follower-<%= f.id %>">
+            <%= link_to gravatar_for(f, size:80), users_path(f.id) %>
+            <h3><%= link_to f.username, users_path(f.id) %></h3>
+            <span class="content">
+                <% if @user.sexes.present? %>
+                    <text>性　別:</text>
+                    <% sex=["不明","男性","女性"] %>
+                    <%= sex[f.sexes] %>
+                <% end %>
+            </span>
+            <span class="timestamp", align="right"><%= time_ago_in_words(f.created_at) %> ago.</span>
+        </li>
+        <br>
+    <% end %>
+    <center><%= paginate @follower, :remote => true %></center>
+<% end %>

@@ -1,0 +1,7 @@
+<div class="container">
+<% content_for :head do %>
+  <meta property="title" content="<%= current_user.username %> - Sonae" />
+  <meta property="description" content="<%= current_user.username %>のプロフィール。" />
+<% end %>
+<h1>こんにちは、<%= current_user.username %>さん</h1>
+<p>ユーザー用ページです。</p>

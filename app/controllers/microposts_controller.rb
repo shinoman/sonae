@@ -1,0 +1,47 @@
+class MicropostsController < ApplicationController
+    before_action :sign_in_required, only: [:create]
+    
+    def create
+        @micropost = current_user.microposts.build(micropost_params)
+        if @micropost.save
+            str = @micropost.content
+            str.scan(/[#＃][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー]+/).map(&:strip).each do |hash|
+                hashtag = view_context.full_to_half(hash)
+                hashtagname = hashtag.downcase
+                exitTag = Hashtag.find_by(name: hashtagname)
+                if hashtag != ""
+                    if exitTag == nil
+                        hashTag = Hashtag.new
+                        hashTag.name = hashtagname
+                        @micropost.hashtags << hashTag
+                        hashTag.save
+                    else
+                        exitName = @micropost.hashtags.find_by(name: hashtagname)
+                        if exitName == nil
+                            @micropost.hashtags << exitTag
+                        end
+                    end
+                end
+            end
+            flash[:success] = "Micropost crated!"
+            redirect_to request.referrer || root_url
+        else
+            @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
+            render "pages/index"
+        end
+    end
+    
+    def destroy
+        @micropost = current_user.microposts.find_by(id: params[:id])
+        return redirect_to root_url if @micropost.nil?
+        @micropost.destroy
+        flash[:success] = "Micropost deleted"
+        redirect_to request.referrer || root_url
+    end
+
+    
+    private
+    def micropost_params
+        params.require(:micropost).permit(:content)
+    end
+end

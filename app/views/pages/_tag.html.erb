@@ -1,0 +1,33 @@
+<center><%= paginate @tag_microposts , remote: true %></center>
+<ol class="microposts">
+<% @tag_microposts.each do |micropost| %>
+    <li id="micropost-<%= micropost.id %>">
+        <section class="micropost">
+            <div class="col-md-2">
+                <%= link_to gravatar_for(micropost.user, size:70), users_path(micropost.user.id) %>
+            </div>
+            <div class="col-md-10">
+                <span class="user"><%= link_to micropost.user.username, users_path(micropost.user.id) %></span>
+                <span class="content">
+                    <%= text_url_to_link(h(micropost.content)).html_safe %><br>
+                    <% micropost.hashtags.each do |tag| %>
+                        <% if tag.name != "" %>
+                            <%= link_to tag.name, tag_path(tag: tag.name), remote: true %>
+                        <% end %>
+                    <% end %>
+                </span>
+                <span class="timestamp">
+                    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+                    <% if current_user == micropost.user %>
+                        <Div Align="right"><%= link_to "delete", micropost, method: :delete, data: { confirm: "You sure?" } %></Div>
+                    <% else %>
+                        <br>
+                        <br>
+                    <% end %>
+                </span>
+            </div>
+        </section>
+    </li>
+<% end %>
+</ol>
+<center><%= paginate @tag_microposts , remote: true %></center>

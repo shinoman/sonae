@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="cover">
+        <div class="cover-inner">
+            <% if user_signed_in? %>
+                <div class="row">
+                    <aside class="col-md-4">
+                        <section class="user_info">
+                            <%= render 'shared/user_info' %>
+                        </section>
+                        <section class="micropost_form">
+                            <%= render 'shared/micropost_form' %>
+                        </section>
+                    </aside>
+                    <div class="col-md-8">
+                        <div class="panel panel-info">
+                            <div class="panel-heading" id='title'><%= render :partial => 'micropost_title' %></div>
+                            <div class="panel-body" id="user_info_pages">
+                                <%= render 'micropost' %>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            <% else %>
+                <div class="cover-contents">
+                    <h1>あなたの万が一に備える場所</h1>
+                    <p>トップページです。</p>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading" id='title'><%= render :partial => 'micropost_title' %></div>
+                    <div id="user_info_pages">
+                        <%= render :partial => 'micropost' %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

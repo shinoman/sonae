@@ -1,0 +1,62 @@
+<% content_for :head do %>
+  <meta property="title" content="<%= @user.username %> - Sonae" />
+  <meta property="description" content="<%= @user.username %>のプロフィール。" />
+<% end %>
+<div class="container">
+  <div class="row">
+    <aside class="col-md-4">
+      <div class="panel panel-success">
+        <div class="panel-body">
+          <section class="user_info">
+            <h3>
+              <center><%= gravatar_for @user, size:150 %></center>
+              <center><%= @user.username %></center>
+            </h3>
+          </section>
+          <% if current_user == @user %>
+            <section class="micropost_form">
+              <%= render 'shared/micropost_form' %>
+            </section>
+          <% end %>
+        </div>
+      </div>
+      <div class="panel panel-success">
+        <div class="panel-body">
+		      <li>
+		        <%= link_to microposts_post_user_path(@user.id), remote: true do %>
+		          Microposts (<span id="micropost_count"><%= @user.microposts.count %></span>)</a>
+		        <% end %>
+		      </li>
+		      <li>
+		        <%= link_to relation_micropost_post_user_path(@user.id), remote: true do %>
+		          Relation-Microposts (<span id="relation_count"><%= @relation_user_post %></span>)</a>
+		        <% end %>
+		      </li>
+		      <li>
+		        <%= link_to favorited_post_user_path(@user.id), remote: true do %>
+		          Favorited-Posts (<span id="favorited_count"><%= @user.favorite_microposts.count %></span>)</a>
+		        <% end %>
+		      </li>
+		      <li>
+		        <%= link_to followers_user_path(@user.id), remote: true do %>
+		          Follower (<span id="follower_count"><%= @follower.count %></span>)</a>
+		        <% end %>
+		      </li>
+		      <li>
+		        <%= link_to followings_user_path(@user.id), remote: true do %>
+		          Following (<span id="following_count"><%= @following.count %></span>)</a>
+		        <% end %>
+		      </li>
+	      </div>
+      </div>
+    </aside>
+    <div class="col-md-8 microposts">
+      <div class="panel panel-info">
+        <div class="panel-heading" id='title'><%= render :partial => 'micropost_title' %></div>
+        <div class="panel-body" id="user_info_pages">
+          <%= render :partial => 'microposts_post' %>
+	      </div>
+      </div>
+    </div>
+  </div>
+</div>
