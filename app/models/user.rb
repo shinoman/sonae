@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
     has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
     has_many :follower_users, through: :follower_relationships, source: :follower
     has_many :favorite_microposts, dependent: :destroy
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :timeoutable, :omniauthable, :omniauth_providers => [:twitter, :facebook]
+    devise :database_authenticatable, :registerable,
+        :recoverable, :rememberable, :trackable, :validatable,
+        :confirmable, :lockable, :timeoutable, :omniauthable, :omniauth_providers => [:twitter, :facebook]
 
     def self.from_omniauth(auth)
         find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
@@ -45,8 +45,8 @@ class User < ActiveRecord::Base
     def self.new_with_session(params, session)
         if session["devise.user_attributes"]
             new(session["devise.user_attributes"]) do |user|
-            user.attributes = params
-        end
+                user.attributes = params
+            end
         else
             super
         end

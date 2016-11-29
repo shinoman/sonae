@@ -50,7 +50,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @micropost = current_user.microposts.build if user_signed_in?
     end
-        def tag
+    def tag
         hashTag = Hashtag.find_by(id: params[:id])
         @hashtags = Hashtag.all
     end

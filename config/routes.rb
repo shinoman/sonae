@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :places
+  get 'map/index'
+
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks" }
   root 'pages#index'
   get 'pages/show'
