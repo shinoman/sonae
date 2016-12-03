@@ -1,0 +1,110 @@
+<div id='google_map'>
+<p id="notice"><%= notice %></p>
+
+<h1>Places</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>説明</th>
+      <th>緯度</th>
+      <th>経度</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @place.each do |place| %>
+      <tr>
+        <td><%= place.name %></td>
+        <td><%= place.description %></td>
+        <td><%= place.latitude %></td>
+        <td><%= place.longitude %></td>
+        <td><%= link_to '詳細', place %></td>
+        <td><%= link_to '編集', edit_place_path(place) %></td>
+        <td><%= link_to '削除', place, method: :delete, data: { confirm: '本当に消してよろしいですか?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Place', new_place_path %>
+<div class ='currentLocation'>
+  <%= button_tag "現在地から探す", type: "button" %>
+</div>
+
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+</div>
+<script type="text/javascript">
+mapStyle = [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2e5d4"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#c5dac6"}]},{"featureType":"poi.park","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":20}]},{"featureType":"road","elementType":"all","stylers":[{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#c5c6c6"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#e4d7c6"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#fbfaf7"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#acbcc9"}]}]
+handler = Gmaps.build('Google');
+handler.buildMap({
+    provider: {styles: mapStyle},
+    internal: {
+        id: 'map'
+    }
+}, function() {
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setCenter(new google.maps.LatLng( <%= params[:latitude] %> , <%= params[:longitude] %> ));
+    handler.getMap().setZoom(12);
+});
+
+
+this.CurrentLocations = (function() {
+    var failGetPosition, options, successGetPosition;
+
+    function CurrentLocations() {}
+
+
+    CurrentLocations.getCurrentLocation = function() {
+        return $('.currentLocation').on('click', function() {
+            var message;
+            if (navigator.geolocation) {
+                return navigator.geolocation.getCurrentPosition(successGetPosition, failGetPosition, options);
+            } else {
+                message = 'ご使用中のブラウザは現在地検索に対応されておりません。';
+                return Alert.set('warning', message);
+            }
+        });
+    };
+
+    successGetPosition = function(position) {
+        $.ajax({
+            type: "post",
+            url: "/place/searches",
+            data: { latitude: position.coords.latitude, longitude: position.coords.longitude }
+        }).done(function(html) {
+            $("#google_map").html(html);
+        });
+    };
+
+    options = {
+        enableHighAccuracy: true
+    };
+
+    failGetPosition = function(error) {
+        var message;
+        switch (error.code) {
+            case 1:
+                message = '位置情報の提供を許可してください。';
+                break;
+            case 2:
+                message = '位置情報の取得に失敗しました。';
+        }
+        return Alert.set('warning', message);
+    };
+
+    return CurrentLocations;
+
+})();
+$(function(){
+  CurrentLocations.getCurrentLocation();
+});
+</script>

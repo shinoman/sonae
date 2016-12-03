@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :places
+  post 'place/searches' => 'places#search'
   get 'map/index'
 
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks" }

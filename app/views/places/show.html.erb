@@ -1,24 +1,47 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>名前:</strong>
   <%= @place.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>説明:</strong>
   <%= @place.description %>
 </p>
 
 <p>
-  <strong>Latitude:</strong>
+  <strong>緯度:</strong>
   <%= @place.latitude %>
 </p>
 
 <p>
-  <strong>Longitude:</strong>
+  <strong>経度:</strong>
   <%= @place.longitude %>
 </p>
 
+<p>
+  <strong>住所:</strong>
+  <%= @place.address %>
+</p>
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
 <%= link_to 'Edit', edit_place_path(@place) %> |
-<%= link_to 'Back', places_path %>
+<%= link_to 'Back', places_path, :method  => "get" %>
+<script type="text/javascript">
+mapStyle = [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2e5d4"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#c5dac6"}]},{"featureType":"poi.park","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":20}]},{"featureType":"road","elementType":"all","stylers":[{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#c5c6c6"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#e4d7c6"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#fbfaf7"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#acbcc9"}]}]
+handler = Gmaps.build('Google');
+handler.buildMap({
+    provider: {styles: mapStyle},
+    internal: {
+        id: 'map'
+    }
+}, function() {
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setCenter(new google.maps.LatLng(<%= @place.latitude %>, <%= @place.longitude %>));
+    handler.getMap().setZoom(12);
+});
+</script>

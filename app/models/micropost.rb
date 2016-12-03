@@ -1,4 +1,6 @@
 class Micropost < ActiveRecord::Base
+  has_many :images # アソシエーション
+  accepts_nested_attributes_for :images # アトリビュート設定
   belongs_to :user
   has_and_belongs_to_many :hashtags
   has_many :favorite_microposts, dependent: :destroy

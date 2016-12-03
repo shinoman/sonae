@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129130522) do
+ActiveRecord::Schema.define(version: 20161203024923) do
 
   create_table "favorite_microposts", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,6 +35,19 @@ ActiveRecord::Schema.define(version: 20161129130522) do
     t.integer "micropost_id"
   end
 
+  create_table "images", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "micropost_id"
+    t.integer  "blog_id"
+    t.integer  "place_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "image_url"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "thread_contents_id"
+  end
+
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "content"
@@ -51,6 +64,7 @@ ActiveRecord::Schema.define(version: 20161129130522) do
     t.float    "longitude"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.text     "address"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -89,20 +103,15 @@ ActiveRecord::Schema.define(version: 20161129130522) do
     t.string   "sexes"
     t.string   "martial_status"
     t.string   "postal_code"
-    t.string   "ship_address"
-    t.string   "ship_city"
-    t.string   "ship_region"
     t.string   "latitude"
     t.string   "longitude"
-    t.string   "official"
     t.string   "bank"
     t.string   "number_type"
     t.string   "account_number"
-    t.string   "person"
-    t.string   "donation"
     t.string   "admin"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.string   "address"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

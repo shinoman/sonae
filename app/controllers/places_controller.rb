@@ -11,10 +11,28 @@ class PlacesController < ApplicationController
       marker.infowindow render_to_string(partial: "places/infowindow", locals: { place: place })
     end
   end
-
+  
+  def search
+    latitude = params[:latitude]
+    longitude = params[:longitude]
+    @place = Place.all.within(2, origin: [latitude, longitude])
+    @places = Place.all
+    @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
+      marker.infowindow render_to_string(partial: "places/infowindow", locals: { place: place })
+    end
+  end
+  
   # GET /places/1
   # GET /places/1.json
   def show
+    @places = Place.all
+    @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
+      marker.infowindow render_to_string(partial: "places/infowindow", locals: { place: place })
+    end
   end
 
   # GET /places/new
@@ -30,7 +48,8 @@ class PlacesController < ApplicationController
   # POST /places.json
   def create
     @place = Place.new(place_params)
-
+    item_image = @place.images.build(image: params['file'])
+    item_image.save
     respond_to do |format|
       if @place.save
         format.html { redirect_to @place, notice: 'Place was successfully created.' }
@@ -74,6 +93,6 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :description, :latitude, :longitude)
+      params.require(:place).permit(:name, :description, :latitude, :longitude, :address, :image, :image_cache)
     end
 end

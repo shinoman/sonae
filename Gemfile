@@ -33,8 +33,12 @@ gem 'omniauth-facebook'
 gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'carrierwave'
+gem 'rmagick', require: 'RMagick'
+gem 'fog'
 gem "gmaps4rails"
 gem "geocoder"
+gem "geokit-rails"
+gem "slim"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
