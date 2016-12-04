@@ -40,15 +40,15 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   
   # mailer setting
-  config.action_mailer.default_url_options = { :protocol => 'https', :host => 'techacademy-cloned-shinobusugimoto.c9users.io' } 
+  config.action_mailer.default_url_options = { :protocol => 'https', :host => 'techacademy-shinobusugimoto.c9users.io' }
   # mail setting
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
+    :address => 'smtp.gmail.com',
     :port => 587,
-    :user_name => "sonae.official@gmail.com",
-    :password => "shinobu3605",
+    :user_name => 'sonae.official@gmail.com',
+    :password => 'shinobu3605',
     :authentication => :plain,
     :enable_starttls_auto => true
   }

@@ -32,7 +32,7 @@
   <br>
   <%= link_to 'New Place', new_place_path %>
   <div class='currentLocation'>
-    <%= button_tag "現在地から探す", type: "button" %>
+    <%= button_tag '現在地から探す', type: 'button' %>
   </div>
   <div style='width: 800px;'>
     <div id="map" style='width: 800px; height: 400px;'></div>
@@ -75,7 +75,7 @@
       id: 'map'
     }
   }, function () {
-    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    var markers = handler.addMarkers(<%=raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
     handler.getMap().setCenter(new google.maps.LatLng(35.681298, 139.7640582));

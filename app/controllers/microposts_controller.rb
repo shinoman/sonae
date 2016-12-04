@@ -8,26 +8,26 @@ class MicropostsController < ApplicationController
             str.scan(/[#＃][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー]+/).map(&:strip).each do |hash|
                 hashtag = view_context.full_to_half(hash)
                 hashtagname = hashtag.downcase
-                exitTag = Hashtag.find_by(name: hashtagname)
-                if hashtag != ""
-                    if exitTag == nil
-                        hashTag = Hashtag.new
-                        hashTag.name = hashtagname
-                        @micropost.hashtags << hashTag
-                        hashTag.save
+                exittag = Hashtag.find_by(name: hashtagname)
+                if hashtag != ''
+                    if exittag == nil
+                        hashtag = Hashtag.new
+                        hashtag.name = hashtagname
+                        @micropost.hashtags << hashtag
+                        hashtag.save
                     else
-                        exitName = @micropost.hashtags.find_by(name: hashtagname)
-                        if exitName == nil
-                            @micropost.hashtags << exitTag
+                        exitname = @micropost.hashtags.find_by(name: hashtagname)
+                        if exitname == nil
+                            @micropost.hashtags << exittag
                         end
                     end
                 end
             end
-            flash[:success] = "Micropost crated!"
+            flash[:success] = 'Micropost crated!'
             redirect_to request.referrer || root_url
         else
             @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
-            render "pages/index"
+            render 'pages/index'
         end
     end
     
@@ -35,7 +35,7 @@ class MicropostsController < ApplicationController
         @micropost = current_user.microposts.find_by(id: params[:id])
         return redirect_to root_url if @micropost.nil?
         @micropost.destroy
-        flash[:success] = "Micropost deleted"
+        flash[:success] = 'Micropost deleted'
         redirect_to request.referrer || root_url
     end
 

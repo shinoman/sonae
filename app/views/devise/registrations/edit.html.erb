@@ -6,7 +6,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, :class =>"form-control" %>
+    <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -15,19 +15,19 @@
 
   <div class="field">
     <%= f.label :password %> <i>( <%= I18n.t('change it') %> )</i><em><%= @minimum_password_length %> <%= I18n.t('characters minimum') %> </em><br />
-    <%= f.password_field :password, autocomplete: "off", :class =>"form-control" %>
+    <%= f.password_field :password, autocomplete: 'off', :class => 'form-control' %>
     <% if @minimum_password_length %>
     <% end %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", :class =>"form-control" %>
+    <%= f.password_field :password_confirmation, autocomplete: 'off', :class => 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :current_password %> <i>( <%= I18n.t('we need your current password to confirm your changes') %> )</i><br />
-    <%= f.password_field :current_password, autocomplete: "off", :class =>"form-control" %>
+    <%= f.password_field :current_password, autocomplete: 'off', :class => 'form-control' %>
   </div>
   <%= f.label :image %>
       　<%= image_tag @user.image.url if @user.image? %>
@@ -35,13 +35,13 @@
 　<%= f.hidden_field :image_cache %>
   <br>
   <div class="actions">
-    <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+    <%= f.submit 'Update', class: 'btn btn-large btn-primary' %>
   </div>
 <% end %>
 
 <h3><%= I18n.t('Cancel my account') %></h3>
 
-<p><%= I18n.t('Unhappy?') %> <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "#{ I18n.t('Are you sure?')}" }, method: :delete %></p>
+<p><%= I18n.t('Unhappy?') %> <%= button_to 'Cancel my account', registration_path(resource_name), data: {confirm: "#{ I18n.t('Are you sure?')}" }, method: :delete %></p>
 
 <%= link_to "#{ I18n.t('Back') }", :back %>
 </div>

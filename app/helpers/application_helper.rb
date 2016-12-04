@@ -11,15 +11,15 @@ module ApplicationHelper
         image_tag(img_url, alt: user.name)
     end
 
-    require "uri"
+    require 'uri'
     def text_url_to_link text
         URI.extract(text, ['http','https']).uniq.each do |url|
-            sub_text = ""
-            sub_text << "<a href=" << url << " target=\" _blank\" data-confirm=\"外部サイトに移動します。よろしいですか？\" >" << url << "</a>"
+            sub_text = ''
+            sub_text << '<a href=' << url << " target=\" _blank\" data-confirm=\"外部サイトに移動します。よろしいですか？\" >" << url << '</a>'
             text.gsub!(url, sub_text)
         end
         text.scan(/[#＃][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー]+/).map(&:strip).each do |hash|
-           text.gsub!(hash, "")
+           text.gsub!(hash, '')
         end
         return text
     end

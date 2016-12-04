@@ -33,7 +33,7 @@
 
 <%= link_to 'New Place', new_place_path %>
   <div class='currentLocation'>
-  <%= button_tag "現在地から探す", type: "button" %>
+  <%= button_tag '現在地から探す', type: 'button' %>
 </div>
 
 <div style='width: 800px;'>
@@ -73,7 +73,7 @@ handler.buildMap({
         id: 'map'
     }
 }, function() {
-    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  var markers = handler.addMarkers(<%=raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
     handler.getMap().setCenter(new google.maps.LatLng( <%= params[:latitude] %> , <%= params[:longitude] %> ));

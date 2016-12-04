@@ -10,18 +10,18 @@
             <span class="icon-bar"></span>
           </button>
           <h1 class="logo">
-            <%= link_to "MONOLIST", root_path, class: "navbar-brand" %>
+            <%= link_to 'MONOLIST', root_path, class: 'navbar-brand' %>
           </h1>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% unless user_signed_in? %>
-              <li><%= link_to "新規登録", new_user_registration_path %></li>
-              <li><%= link_to "ログイン", new_user_session_path %></li>
+              <li><%= link_to '新規登録', new_user_registration_path %></li>
+              <li><%= link_to 'ログイン', new_user_session_path %></li>
             <% else %>
               <li>
-                <%= link_to "#" do %>
+                <%= link_to '#' do %>
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                   アイテムを追加
                 <% end %>
@@ -33,11 +33,11 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li>
-                    <%= link_to "Haveランキング" , "#"  %>
+                    <%= link_to 'Haveランキング', '#' %>
                   </li>
                   <li role="separator" class="divider"></li>
                   <li>
-                    <%= link_to "Wantランキング", "#" %>
+                    <%= link_to 'Wantランキング', '#' %>
                   </li>
                 </ul>
               </li>
@@ -56,14 +56,14 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li>
-                    <%= link_to "プロフィール" , users_path(current_user.id) %>
+                    <%= link_to 'プロフィール', users_path(current_user.id) %>
                   <li role="separator" class="divider"></li>
                   <li>
-                    <%= link_to "プロフィール変更", edit_user_registration_path %>
+                    <%= link_to 'プロフィール変更', edit_user_registration_path %>
                   </li>
                   <li role="separator" class="divider"></li>
                   <li>
-                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
                   </li>
                 </ul>
               </li>

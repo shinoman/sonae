@@ -7,6 +7,7 @@ class UsersController < ApplicationController
             format.html
             format.js
         end
+        SampleWorker.perform_async(@user.id)
     end
 
     def followings
@@ -51,7 +52,7 @@ class UsersController < ApplicationController
         @micropost = current_user.microposts.build if user_signed_in?
     end
     def tag
-        hashTag = Hashtag.find_by(id: params[:id])
+
         @hashtags = Hashtag.all
     end
 

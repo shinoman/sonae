@@ -28,7 +28,7 @@
   <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
 <%= link_to 'Edit', edit_place_path(@place) %> |
-<%= link_to 'Back', places_path, :method  => "get" %>
+<%= link_to 'Back', places_path, :method  => 'get' %>
 <script type="text/javascript">
   mapStyle = [{
     "featureType": "administrative",
@@ -62,7 +62,7 @@ handler.buildMap({
         id: 'map'
     }
 }, function() {
-    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  var markers = handler.addMarkers(<%=raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
     handler.getMap().setCenter(new google.maps.LatLng(<%= @place.latitude %>, <%= @place.longitude %>));

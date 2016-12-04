@@ -34,11 +34,13 @@ gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'rmagick', require: 'RMagick'
-gem "gmaps4rails"
-gem "geocoder"
-gem "geokit-rails"
-gem "slim-rails"
+gem 'gmaps4rails'
+gem 'geocoder'
+gem 'geokit-rails'
+gem 'slim-rails'
 gem 'dropzonejs-rails'
+gem 'carrierwave_backgrounder'
+gem 'sidekiq'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

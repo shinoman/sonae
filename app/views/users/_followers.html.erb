@@ -7,7 +7,7 @@
             <span class="content">
                 <% if @user.sexes.present? %>
                     <text>性　別:</text>
-                    <% sex=["不明","男性","女性"] %>
+                    <% sex=['不明', '男性', '女性'] %>
                     <%= sex[f.sexes] %>
                 <% end %>
             </span>

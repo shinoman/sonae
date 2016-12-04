@@ -8,7 +8,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, :class =>"form-control" %>
+    <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
   </div>
 
   <div class="field">
@@ -16,19 +16,19 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> <%= I18n.t('characters minimum') %>)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", :class =>"form-control" %>
+    <%= f.password_field :password, autocomplete: 'off', :class => 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", :class =>"form-control" %>
+    <%= f.password_field :password_confirmation, autocomplete: 'off', :class => 'form-control' %>
   </div>
   <br>
   <div class="actions">
-    <%= f.submit "Sign up", class: "btn btn-large btn-primary" %>
+    <%= f.submit 'Sign up', class: 'btn btn-large btn-primary' %>
   </div>
 <% end %>
 <div>
-<%= render "devise/shared/links" %>
+<%= render 'devise/shared/links' %>
 </div>
 </div>
