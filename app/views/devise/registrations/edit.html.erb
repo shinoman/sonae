@@ -30,7 +30,7 @@
     <%= f.password_field :current_password, autocomplete: "off", :class =>"form-control" %>
   </div>
   <%= f.label :image %>
-　<%= image_tag @user.image.thumb.url if @user.image? %>
+      　<%= image_tag @user.image.url if @user.image? %>
 　<%= f.file_field :image %>
 　<%= f.hidden_field :image_cache %>
   <br>

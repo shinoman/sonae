@@ -183,8 +183,8 @@ Devise.setup do |config|
   # :both  = Enables both strategies
   # :none  = No unlock strategy. You should handle unlocking by yourself.
   # lock sessings
-    config.unlock_strategy = :email
-    config.maximum_attempts = 4
+  config.unlock_strategy = :email
+  config.maximum_attempts = 4
 
   # Number of authentication tries before locking an account if lock_strategy
   # is failed attempts.
@@ -252,12 +252,12 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  if Rails.env.production?     
-    config.omniauth :facebook, "562003827329470", "510dc01fda5a7470a885f4c91f20bd6e"
-    config.omniauth :twitter,  "Gjgr3tkjhgf3fhkMNuprAmUr6", "6m2k4dnaUCke26uFbrVgYjcoiMBA7pDvoga7QpSAEvK72aubZm"
+  if Rails.env.production?
+    config.omniauth :facebook, '562003827329470', '510dc01fda5a7470a885f4c91f20bd6e'
+    config.omniauth :twitter, 'Gjgr3tkjhgf3fhkMNuprAmUr6', '6m2k4dnaUCke26uFbrVgYjcoiMBA7pDvoga7QpSAEvK72aubZm'
   else
-    config.omniauth :twitter, "XrJpg4hy7ZnPlQEIhURpe0Uva", "smOSQgt1UyJmRQWlrVywCKGuyq3D3QdLpnKId2A2sSMsz4xK9x"
-    config.omniauth :facebook, "554878658041987", "d1f24e2a9ee97ddf91f0fad0794d5df4"
+    config.omniauth :twitter, 'XrJpg4hy7ZnPlQEIhURpe0Uva', 'smOSQgt1UyJmRQWlrVywCKGuyq3D3QdLpnKId2A2sSMsz4xK9x'
+    config.omniauth :facebook, '554878658041987', 'd1f24e2a9ee97ddf91f0fad0794d5df4'
   end
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
