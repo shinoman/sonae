@@ -36,9 +36,24 @@ ActiveRecord::Schema.define(version: 20161203130305) do
   end
 
   create_table "images", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "micropost_id"
+    t.integer "blog_id"
+    t.integer "place_id"
+    t.integer "thread_contents_id"
+    t.string "name"
+    t.text "description"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "images", ["blog_id"], name: "index_images_on_blog_id"
+  add_index "images", ["created_at"], name: "index_images_on_created_at"
+  add_index "images", ["micropost_id"], name: "index_images_on_micropost_id"
+  add_index "images", ["place_id"], name: "index_images_on_place_id"
+  add_index "images", ["thread_contents_id"], name: "index_images_on_thread_contents_id"
+  add_index "images", ["user_id"], name: "index_images_on_user_id"
 
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id"
