@@ -51,6 +51,13 @@
       </div>
     </aside>
     <div class="col-md-8 microposts">
+
+      <% if @user.image? %>
+　　<%= image_tag @user.image.url %>
+　<% else %>
+　　<%= image_tag 'noimage.gif' %>
+　<% end %>
+
       <div class="panel panel-info">
         <div class="panel-heading" id='title'><%= render :partial => 'micropost_title' %></div>
         <div class="panel-body" id="user_info_pages">

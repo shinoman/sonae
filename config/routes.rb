@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :places
   post 'place/searches' => 'places#search'
   get 'map/index'
-
+  resources :images, only: [:edit, :update, :destroy] do
+    collection do
+      post :upload
+    end
+  end
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks" }
   root 'pages#index'
   get 'pages/show'
@@ -12,7 +16,7 @@ Rails.application.routes.draw do
     resource :favorite_microposts, only: [:create, :destroy]
 	end
   get 'hashtag' => 'pages#tag', :as => "tag"
-  
+
   resources :relationships, only: [:create, :destroy]
   resources :users, only: [:get] do
     member do

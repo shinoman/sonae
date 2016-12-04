@@ -1,6 +1,5 @@
 class Place < ActiveRecord::Base
-    has_many :images # アソシエーション
-    accepts_nested_attributes_for :images # アトリビュート設定
+    has_many :images
     geocoded_by :address
     after_validation :geocode, if: :address_changed?
     reverse_geocoded_by :latitude, :longitude

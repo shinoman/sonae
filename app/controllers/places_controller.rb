@@ -11,7 +11,7 @@ class PlacesController < ApplicationController
       marker.infowindow render_to_string(partial: "places/infowindow", locals: { place: place })
     end
   end
-  
+
   def search
     latitude = params[:latitude]
     longitude = params[:longitude]
@@ -23,7 +23,7 @@ class PlacesController < ApplicationController
       marker.infowindow render_to_string(partial: "places/infowindow", locals: { place: place })
     end
   end
-  
+
   # GET /places/1
   # GET /places/1.json
   def show
@@ -48,8 +48,6 @@ class PlacesController < ApplicationController
   # POST /places.json
   def create
     @place = Place.new(place_params)
-    item_image = @place.images.build(image: params['file'])
-    item_image.save
     respond_to do |format|
       if @place.save
         format.html { redirect_to @place, notice: 'Place was successfully created.' }

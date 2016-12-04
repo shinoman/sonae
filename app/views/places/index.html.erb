@@ -21,6 +21,7 @@
             <td><%= place.latitude %></td>
             <td><%= place.longitude %></td>
             <td><%= place.address %></td>
+            <td></td>
             <td><%= link_to '詳細', place %></td>
             <td><%= link_to '編集', edit_place_path(place) %></td>
             <td><%= link_to '削除', place, method: :delete, data: { confirm: '本当に消してよろしいですか?' } %></td>

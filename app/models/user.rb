@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-    has_many :images # アソシエーション
-    accepts_nested_attributes_for :images # アトリビュート設定
+    mount_uploader :image, UserImageUploader
     has_many :microposts
     has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
     has_many :following_users, through: :following_relationships, source: :followed
@@ -22,16 +21,16 @@ class User < ActiveRecord::Base
             end
         end
     end
-    
+
     def follow(other_user)
         following_relationships.find_or_create_by(followed_id: other_user.id)
     end
-    
+
     def unfollow(other_user)
         following_relationship = following_relationships.find_by(followed_id: other_user.id)
         following_relationship.destroy if following_relationship
     end
-    
+
     def following?(other_user)
         following_users.include?(other_user)
     end
@@ -39,7 +38,7 @@ class User < ActiveRecord::Base
     def feed_items
         Micropost.where(user_id: following_user_ids + [self.id])
     end
-    
+
     def relation_users
         User.find(following_user_ids + [self.id])
     end
