@@ -41,6 +41,7 @@ gem 'slim-rails'
 gem 'dropzonejs-rails'
 gem 'carrierwave_backgrounder'
 gem 'sidekiq'
+gem 'redis-namespace'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

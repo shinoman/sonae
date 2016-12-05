@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       format.html
       format.js
     end
-    SampleWorker.perform_async(@user.id)
+    SampleWorker.perform_async()
   end
 
   def followings

@@ -1,1 +1,10 @@
-class SampleWorker  include Sidekiq::Worker  sidekiq_options queue: :sample  def perform(user_id)    user = User.find(user_id)    name = "userIDは#{user_id}だよ！"    user.update_attribute(:name, name)  endend
+class SampleWorker
+
+  include Sidekiq::Worker
+  sidekiq_options queue: :sample
+
+  def perform()
+    puts "\n----------test sidekiq----------\n"
+  end
+
+end
