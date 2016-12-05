@@ -1,5 +1,6 @@
 class UserImageUploader < CarrierWave::Uploader::Base
   storage :fog
+  include ::CarrierWave::Backgrounder::Delay
 # encoding: utf-8
 
 # リサイズしたり画像形式を変更するのに必要

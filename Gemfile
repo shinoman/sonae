@@ -42,6 +42,8 @@ gem 'dropzonejs-rails'
 gem 'carrierwave_backgrounder'
 gem 'sidekiq'
 gem 'redis-namespace'
+gem 'sinatra', '>= 1.3.0', :require => nil
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

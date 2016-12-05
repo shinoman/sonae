@@ -28,4 +28,6 @@ Rails.application.routes.draw do
       get 'favorited_post'
     end
   end
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end

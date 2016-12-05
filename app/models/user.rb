@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
     mount_uploader :image, UserImageUploader
+    # Image upload
+    mount_uploader :image, UserImageUploader
+    # - 追加 -
+    store_in_background :image
     has_many :microposts
     has_many :following_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
     has_many :following_users, through: :following_relationships, source: :followed
