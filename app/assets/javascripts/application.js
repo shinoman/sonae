@@ -18,3 +18,4 @@
 //= require underscore
 //= require gmaps/google
 //= require dropzone
+//= require ckeditor/init

@@ -234,3 +234,11 @@ ja:
   Send me reset password instructions: パスワード初期化メールの送信
   Resend unlock instructions: アカウントロック解除申請
   unlock instructions: アカウントロック解除
+  ckeditor:
+      page_title: 'CKEditorファイルマネージャー'
+      confirm_delete: 'ファイルを削除しますか？'
+      buttons:
+        cancel: 'キャンセル'
+        upload: 'アップロード'
+        delete: '削除'
+        next: '次へ'
