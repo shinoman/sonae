@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-    mount_uploader :image, UserImageUploader
     # Image upload
     mount_uploader :image, UserImageUploader
     # - 追加 -
