@@ -13,9 +13,9 @@
                     </aside>
                     <div class="col-md-8">
                         <div class="panel panel-info">
-                            <div class="panel-heading" id='title'><%= render :partial => 'micropost_title' %></div>
+                            <div class="panel-heading" id='title'><%= render :partial => 'users/micropost_title' %></div>
                             <div class="panel-body" id="user_info_pages">
-                                <%= render 'micropost' %>
+                                <%= render :partial => 'pages/micropost' %>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                 <div class="panel panel-info">
                     <div class="panel-heading" id='title'><%= render :partial => 'micropost_title' %></div>
                     <div id="user_info_pages">
-                        <%= render :partial => 'micropost' %>
+                        <%= render :partial => 'pages/micropost' %>
                     </div>
                 </div>
             <% end %>

@@ -26,7 +26,8 @@ class MicropostsController < ApplicationController
             flash[:success] = 'Micropost crated!'
             redirect_to request.referrer || root_url
         else
-            @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
+            @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc).page(params[:page])
+            @user = current_user
             render 'pages/index'
         end
     end
